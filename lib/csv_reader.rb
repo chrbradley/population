@@ -12,7 +12,7 @@ class CSVReader
       
       new_header = h.gsub('"', '') # remove quotes
       
-      new_header.strip! # remove new line
+      new_header.strip! # remove new line characters
 
       new_header.underscore.to_sym # converts to snake_case (.underscore), converts to symbol (.to_sym)
     end
@@ -27,6 +27,18 @@ class CSVReader
     h
   end
 
+  def read
+    f = File.new(@fname, 'r')  # creats a new, read-only, instance of File class from filename variable passed in initialize
+  
+    self.headers = f.readline # not sure what this does
+
+    while (!f.eof && next_line = f.readline)  # until the end of File instance
+      values = next_line.split(',')  # set each line to variable values
+      hash = create_hash(values)  # add values to hash
+      yield(hash)  # return has to block it was called from
+    end
+  end
+
 end
 
 class String
@@ -37,4 +49,5 @@ class String
     tr("-", "_").
     downcase
   end
+
 end
