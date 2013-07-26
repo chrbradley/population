@@ -1,4 +1,4 @@
-require_relative 'cvs_reader' # => looks for cvs_reader.rb
+require_relative 'csv_reader' # => looks for cvs_reader.rb
 require_relative 'area'  # => looks for area.rb
 
 class Setup

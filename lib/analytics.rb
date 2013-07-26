@@ -11,11 +11,12 @@ class Analytics
     # => menu_id is the number that shows up in the menu
     # => menu_title is the text displayed in the menu
     # => method is the method called is it's option is picked by the user
-    @options << { menu_id 1, menu_title: 'Areas Count', method: :how_many }
-    @options << { menu_id 2, menu_title: 'Smallest Population (non 0)', method: :smallest_pop }
-    @options << { menu_id 3, menu_title: 'Largest Population', method: :largest_pop }
-    @options << { menu_id 4, menu_title: 'How many zip codes iin California?', method: :zip_info }
-    @options << { menu_id 5, menu_title: 'Exit', method: :exit }
+    @options << { menu_id: 1, menu_title: 'Areas Count', method: :how_many }
+    @options << { menu_id: 2, menu_title: 'Smallest Population (non 0)', method: :smallest_pop }
+    @options << { menu_id: 3, menu_title: 'Largest Population', method: :largest_pop }
+    @options << { menu_id: 4, menu_title: 'How many zip codes in California?', method: :california_zips }
+    @options << { menu_id: 5, menu_title: 'Information for a given zip code:', method: :zip_info }
+    @options << { menu_id: 6, menu_title: 'Exit', method: :exit }
   end
 
   def run(choice)
@@ -66,4 +67,6 @@ class Analytics
     else
       puts "Zip code not found."
     end
+  end
+
 end

@@ -1,5 +1,5 @@
 require_relative 'lib/setup'  # => Access to setup.rb
-require_relative ' lib/analytics' # => Access to analytics.rb
+require_relative 'lib/analytics' # => Access to analytics.rb
 
 class Population
   attr_accessor :analytics
@@ -15,23 +15,23 @@ class Population
     puts "---------------"
 
     @analytics.options.each do |opt|  # => iterates over @analytics.options
-      puts "#{opt[menu_id]}. #{opt[:menu_title]}" # => Prints each option's menu_id and menu_title
+      puts "#{opt[:menu_id]}. #{opt[:menu_title]}" # => Prints each option's menu_id and menu_title
     end
   end
 
   def run
     stop = false
     while stop != :exit do
-      self.menu_title # => run the menu method
+      self.menu  # => run the menu method
       
-      print "Choice: "  # => grab the choice from the user
+      print "Type a number: "  # => grab the choice from the user
       choice = gets.strip.to_i
 
       stop = @analytics.run(choice) # => call run on analytics with the choice
-      if stop == :Exiting # => based on what that returns either exit or
+      if stop == :exit # => based on what that returns either exit or
         puts "Exiting"
       else
-        print "\nHit enter to continue..."  # => ask user to hit enter (this pauses the loop)
+        print "\nHit enter to play again..."  # => ask user to hit enter (this pauses the loop)
         gets
       end
     end
