@@ -6,36 +6,36 @@ class CSVReader
   end
 
   def headers=(header_str)
-    @headers = header_str.split(',') # split on comma
+    @headers = header_str.split(',') # => split on comma
 
     @headers.map! do |h|
       
-      new_header = h.gsub('"', '') # remove quotes
+      new_header = h.gsub('"', '') # => remove quotes
       
-      new_header.strip! # remove new line characters
+      new_header.strip! # => remove new line characters
 
-      new_header.underscore.to_sym # converts to snake_case (.underscore), converts to symbol (.to_sym)
+      new_header.underscore.to_sym # => converts to snake_case (.underscore), converts to symbol (.to_sym)
     end
   end
 
   def create_hash(values)
     h = {}
     @headers.each_with_index do |header, i|
-      value = values[i].strip.gsub('"','') # removes quotes and new-line chars
-      h[header] = value unless value.empty? # populates hash with the cleansed value
+      value = values[i].strip.gsub('"','') # => removes quotes and new-line chars
+      h[header] = value unless value.empty? # => populates hash with the cleansed value
     end
     h
   end
 
   def read
-    f = File.new(@fname, 'r')  # creats a new, read-only, instance of File class from filename variable passed in initialize
+    f = File.new(@fname, 'r')  # => creats a new, read-only, instance of File class from filename variable passed in initialize
   
-    self.headers = f.readline # not sure what this does
+    self.headers = f.readline # => not sure what this does
 
-    while (!f.eof && next_line = f.readline)  # until the end of File instance
-      values = next_line.split(',')  # set each line to variable values
-      hash = create_hash(values)  # add values to hash
-      yield(hash)  # return has to block it was called from
+    while (!f.eof && next_line = f.readline)  # => until the end of File instance
+      values = next_line.split(',')  # => set each line to variable values
+      hash = create_hash(values)  # => add values to hash
+      yield(hash)  # => return has to block it was called from
     end
   end
 
