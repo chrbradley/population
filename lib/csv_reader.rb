@@ -30,12 +30,12 @@ class CSVReader
   def read
     f = File.new(@fname, 'r')  # => creats a new, read-only, instance of File class from filename variable passed in initialize
   
-    self.headers = f.readline # => not sure what this does
+    self.headers = f.readline # => .readline reads one line at a time. The first line is the headers for the csv file.
 
     while (!f.eof && next_line = f.readline)  # => until the end of File instance
       values = next_line.split(',')  # => set each line to variable values
       hash = create_hash(values)  # => add values to hash
-      yield(hash)  # => return has to block it was called from
+      yield(hash)  # => return hash to block it was called from
     end
   end
 

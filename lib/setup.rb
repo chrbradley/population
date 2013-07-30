@@ -12,6 +12,5 @@ class Setup
     end
 
     self # => returns itself
-
   end
 end
