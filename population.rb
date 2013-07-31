@@ -14,8 +14,12 @@ class Population
     puts "Population Menu"
     puts "---------------"
 
-    @analytics.options.each do |opt|  # => iterates over @analytics.options
-      puts "#{opt[:menu_id]}. #{opt[:menu_title]}" # => Prints each option's menu_id and menu_title
+    # index = 1
+    @analytics.options.each_with_index do |opt,index|  # => iterates over @analytics.options
+      # puts "#{opt[:menu_id]}. #{opt[:menu_title]}" # => Prints each option's menu_id and menu_title
+      puts "#{index+1}. #{opt[:menu_title]}" # => Prints each option's menu_id and menu_title
+      opt[:m_id] = index+1
+      # index +=1
     end
   end
 
